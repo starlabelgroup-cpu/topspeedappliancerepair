@@ -1,0 +1,1 @@
+{"rewrites":[{"destination":"https://top-speed-service-os.vercel.app/api/v1/:path*","source":"/api/v1/:path*"}]}
