@@ -40,7 +40,7 @@ rendered.
 
 ## Notes
 
-- Phone: (954) 931-7997 · Hours: Mon–Fri 8am–7pm
+- Phone: (844) 460-7038 · Hours: Mon–Fri 8am–7pm
 - Office: 6810 N State Rd 7, Suite 341, Coconut Creek, FL 33073
 - Pricing shown is the real residential structure only ($99 diagnostic
   credited toward an approved repair; $210 flat repair labor; $150 flat
