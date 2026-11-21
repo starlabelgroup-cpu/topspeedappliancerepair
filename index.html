@@ -472,7 +472,7 @@
     var out = {};
     try {
       var params = new URLSearchParams(window.location.search);
-      var map = { utm_source: 'utmSource', utm_medium: 'utmMedium', utm_campaign: 'utmCampaign', gclid: 'gclid', fbclid: 'fbclid', msclkid: 'msclkid' };
+      var map = { utm_source: 'utmSource', utm_medium: 'utmMedium', utm_campaign: 'utmCampaign', utm_term: 'utmTerm', utm_content: 'utmContent', gclid: 'gclid', fbclid: 'fbclid', msclkid: 'msclkid' };
       Object.keys(map).forEach(function (param) {
         var v = params.get(param);
         if (v && v.trim()) out[map[param]] = v.trim().slice(0, 200);
@@ -480,7 +480,28 @@
     } catch (e) { /* an unparseable query string means no attribution */ }
     return out;
   }
-  var attribution = captureAttribution();
+
+  /* First-touch persistence (conversion tracking, 2026-11-20): the
+     Service OS convention — the first tagged visit inside a 30-day
+     window owns the booking's attribution, so the click that brought
+     the customer is the one stored on the booking record. */
+  var ATTR_KEY = 'tsar_attribution';
+  var ATTR_WINDOW = 30 * 24 * 60 * 60 * 1000;
+  function firstTouchAttribution() {
+    try {
+      var raw = localStorage.getItem(ATTR_KEY);
+      if (raw) {
+        var stored = JSON.parse(raw);
+        if (stored && typeof stored.capturedAt === 'number' && stored.attribution && (Date.now() - stored.capturedAt) <= ATTR_WINDOW) return stored.attribution;
+      }
+    } catch (e) { /* storage unavailable — URL params still apply */ }
+    var fresh = captureAttribution();
+    if (Object.keys(fresh).length) {
+      try { localStorage.setItem(ATTR_KEY, JSON.stringify({ capturedAt: Date.now(), attribution: fresh })); } catch (e) { /* session-only */ }
+    }
+    return fresh;
+  }
+  var attribution = firstTouchAttribution();
 
   function val(id) { return document.getElementById(id).value; }
 
@@ -546,6 +567,8 @@
         return body.data;
       });
     }).then(function (data) {
+      /* Conversion event for the measurement layer (2026-11-20). */
+      try { window.dataLayer = window.dataLayer || []; window.dataLayer.push({ event: 'booking_submitted', reference_code: data.referenceCode }); } catch (e) { /* measurement never breaks a booking */ }
       var pill = document.getElementById('cfPill');
       var heading = document.getElementById('cfHeading');
       var message = document.getElementById('cfMessage');
