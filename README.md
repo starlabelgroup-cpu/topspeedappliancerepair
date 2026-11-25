@@ -41,7 +41,7 @@ rendered.
 ## Notes
 
 - Phone: (844) 460-7038 · Hours: Mon–Fri 8am–7pm
-- Office: 6810 N State Rd 7, Suite 341, Coconut Creek, FL 33073
+- Service area: Broward, Palm Beach & Miami-Dade — service-area business (no public street address)
 - Pricing shown is the real residential structure only ($99 diagnostic
   credited toward an approved repair; $210 flat repair labor; $150 flat
   installation; parts/materials at written quote). Commercial work is

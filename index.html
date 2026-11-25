@@ -51,14 +51,6 @@
     "url": "https://topspeedserviceos.com/"
   },
   "telephone": "+1-844-460-7038",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "6810 N State Rd 7, Suite 341",
-    "addressLocality": "Coconut Creek",
-    "addressRegion": "FL",
-    "postalCode": "33073",
-    "addressCountry": "US"
-  },
   "openingHours": "Mo-Fr 08:00-19:00",
   "areaServed": [
     { "@type": "AdministrativeArea", "name": "Broward County, FL" },
@@ -109,7 +101,21 @@
   header.site{ background:var(--navy); color:#fff; position:sticky; top:0; z-index:20; box-shadow:0 2px 10px rgba(12,22,43,.25); }
   .header-in{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 0; flex-wrap:wrap; }
   .brand{ display:flex; align-items:center; gap:10px; color:#fff; text-decoration:none; min-width:0; }
-  .brand-badge{ width:40px; height:40px; border-radius:10px; background:var(--red); display:flex; align-items:center; justify-content:center; flex:0 0 auto; }
+  .brand-crest{ width:42px; height:42px; flex:0 0 auto; display:block; }
+  .checker{ height:13px; background:repeating-conic-gradient(var(--navy) 0% 25%, #fff 0% 50%); background-size:26px 26px; }
+  .speed-stripes{ display:flex; gap:6px; margin:0 0 20px; }
+  .speed-stripes i{ display:block; height:6px; border-radius:3px; transform:skewX(-24deg); }
+  .speed-stripes i:nth-child(1){ width:52px; background:var(--red); }
+  .speed-stripes i:nth-child(2){ width:34px; background:#E87A85; }
+  .speed-stripes i:nth-child(3){ width:20px; background:#B9C6DC; }
+  .kicker-row{ display:flex; align-items:center; gap:9px; margin:0 0 8px; }
+  .kicker-row .kicker{ margin:0; }
+  .kicker-row svg{ color:var(--red-dark); flex:0 0 auto; }
+  .how-head{ display:flex; gap:22px; align-items:flex-start; }
+  .how-head .band-light{ flex:0 0 auto; margin-top:2px; }
+  .crest-row{ display:flex; gap:12px; align-items:center; margin-top:16px; }
+  .crest-row span{ font-size:.9rem; line-height:1.45; color:#B9C6DC; }
+  .crest{ flex:0 0 auto; }
   .brand-name{ font-weight:800; font-size:1.06rem; letter-spacing:.2px; line-height:1.15; }
   .brand-sub{ font-size:.78rem; color:#B9C6DC; }
   .header-actions{ display:flex; gap:10px; flex-wrap:wrap; }
@@ -193,6 +199,7 @@
     .hero h1{ font-size:1.8rem; }
     .header-actions .btn{ padding:9px 12px; font-size:.9rem; }
     .book-card{ padding:20px; }
+    .how-head .band-light{ display:none; }
   }
 </style>
 </head>
@@ -201,9 +208,7 @@
 <header class="site">
   <div class="wrap header-in">
     <a class="brand" href="/" aria-label="Top Speed Appliance Repair — home">
-      <span class="brand-badge" aria-hidden="true">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4.5 13.5H11L9.5 22 19 10h-6.5L13 2z"/></svg>
-      </span>
+      <img class="brand-crest" src="/assets/brand/shield-badge.svg" alt="" aria-hidden="true" width="42" height="42">
       <span>
         <span class="brand-name">Top Speed Appliance Repair</span><br>
         <span class="brand-sub">The Faster, The Better.</span>
@@ -221,6 +226,7 @@
 
 <section class="hero">
   <div class="wrap">
+    <div class="speed-stripes" aria-hidden="true"><i></i><i></i><i></i></div>
     <h1>Appliance repair in Broward County, <span class="accent">at top speed.</span></h1>
     <p class="lede">Same-day appliance repair and installation across Broward County and the tri-county area — refrigerators, washers, dryers, ovens, dishwashers and more. Send a request online or call us, and a real person from our office confirms your job.</p>
     <div class="hero-ctas">
@@ -238,10 +244,11 @@
     </div>
   </div>
 </section>
+<div class="checker" aria-hidden="true"></div>
 
 <section class="block" id="services">
   <div class="wrap">
-    <p class="kicker">What we fix</p>
+    <div class="kicker-row"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.8 5.2a3.6 3.6 0 0 1 4.9-3.4L16.4 4l2.1 2.1 2.3-2.2a3.6 3.6 0 0 1-4.8 4.8L8.6 16a1.8 1.8 0 0 1-2.5-2.5z"/><path d="M15 14.5l5.2 5.2M20.2 14.5L22 16.3a1.7 1.7 0 0 1-2.4 2.4l-4.6-4.2" stroke-width="1.7"/></svg><p class="kicker">What we fix</p></div>
     <h2 class="title">Appliance repair &amp; installation services</h2>
     <p class="sub">Nine services, one call. Tell us what stopped working and our office matches your job to a technician with the right parts on the truck.</p>
     <div class="grid grid-3">
@@ -296,9 +303,14 @@
 
 <section class="block alt" id="how">
   <div class="wrap">
-    <p class="kicker">How it works</p>
-    <h2 class="title">Simple process. Fast turnaround. No surprises.</h2>
-    <p class="sub">Every request goes into Top Speed Service OS, the system our Service Setters office works from — a person confirms every job before a technician is dispatched.</p>
+    <div class="how-head">
+      <img class="band-light" src="/assets/brand/stoplight.svg" alt="" aria-hidden="true" width="34" height="82">
+      <div>
+        <p class="kicker">How it works</p>
+        <h2 class="title">Simple process. Fast turnaround. No surprises.</h2>
+        <p class="sub">Every request goes into Top Speed Service OS, the system our Service Setters office works from — a person confirms every job before a technician is dispatched.</p>
+      </div>
+    </div>
     <div class="grid grid-3 steps">
       <div class="card">
         <div class="step-num">1</div>
@@ -348,7 +360,7 @@
 
 <section class="block alt" id="coverage">
   <div class="wrap">
-    <p class="kicker">Coverage</p>
+    <div class="kicker-row"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 21L9.5 3M19.5 21L14.5 3"/><path d="M12 18.2v-2.4M12 13.4V11M12 8.2V6" stroke-width="1.8"/></svg><p class="kicker">Coverage</p></div>
     <h2 class="title">65 cities across the tri-county area</h2>
     <p class="sub">We serve 65 cities across Broward, Palm Beach and Miami-Dade counties. Booking instantly matches our 12 core Broward cities below; requests from the wider area go to our office for a quick review, and we call you back to confirm.</p>
     <div class="cities">
@@ -459,9 +471,10 @@
     <div class="foot-grid">
       <div>
         <p class="foot-brand">Top Speed Appliance Repair</p>
-        <p style="margin:0 0 6px;">Top Speed Appliance LLC<br>6810 N State Rd 7, Suite 341<br>Coconut Creek, FL 33073</p>
+        <p style="margin:0 0 6px;">Top Speed Appliance LLC<br>Serving Broward, Palm Beach &amp; Miami-Dade<br>Repairs at your location — service-area business</p>
         <p style="margin:0 0 6px;">Phone: <a href="tel:+18444607038" style="display:inline; padding:0;">(844) 460-7038</a></p>
         <p style="margin:0;">Hours: Mon–Fri, 8am–7pm</p>
+        <div class="crest-row"><img class="crest" src="/assets/brand/shield-badge.svg" alt="" aria-hidden="true" width="40" height="40"><span>The Top Speed standard — precision motorsport, applied to appliance repair.</span></div>
       </div>
       <div>
         <h3>Services</h3>
@@ -498,7 +511,7 @@
     </div>
     <div class="legal">
       <span>© 2026 Top Speed Appliance LLC. All rights reserved.</span>
-      <span>Top Speed Appliance Repair · Coconut Creek, Florida</span>
+      <span>Top Speed Appliance Repair · Broward, Palm Beach &amp; Miami-Dade</span>
     </div>
   </div>
 </footer>
